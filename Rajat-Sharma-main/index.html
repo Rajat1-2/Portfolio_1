@@ -7,29 +7,149 @@
         <link rel="stylesheet" href="assets/vender/portfolio-img/fancybox.css">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+
+         
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            height: 64px;
+        }
+        .header .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #222;
+            letter-spacing: 1px;
+        }
+        .header .brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff8800;
+            background: #fff;
+        }
+        .navbar {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .nav {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 18px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav li {
+            display: flex;
+            align-items: center;
+        }
+        .nav a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 1rem;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            font-weight: 500;
+        }
+        .nav li.active a,
+        .nav a:hover {
+            background: #ff8800;
+            color: #fff;
+        }
+        .nav a .fa-solid,
+        .nav a .fa-regular {
+            font-size: 1.2em;
+        }
+        .menu {
+            display: none;
+        }
+        body {
+            padding-top: 64px;
+        }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                height: auto;
+                padding: 10px 10px;
+            }
+            .navbar {
+                width: 100%;
+                justify-content: center;
+            }
+            .nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .header .brand {
+                margin-bottom: 8px;
+            }
+        }
+    </style>
+    
     </head>
     <body>
-        <header class="header">
-            <i class="menu"></i>
-            <nav class="navbar">
-                <ul class="nav">
-                    <li class="active"><i class="nav-icon"></i><a
-                            href="#home" class="scroll-link">Home</a></li>
-                    <li><i class="nav-icon"></i><a href="#about"
-                            class="scroll-link">About</a></li>
-                    <li><i class="nav-icon"></i><a
-                            href="#resume" class="scroll-link">Resume</a></li>
-                    <li><i class="nav-icon"></i><a
-                            href="#portfolio"
-                            class="scroll-link">Portfolio</a></li>
-                    <li><i class="nav-icon"></i><a
-                            href="#services"
-                            class="scroll-link">Services</a></li>
-                    <li><i class="nav-icon"></i><a
-                            href="#contact" class="scroll-link">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
+          <header class="header">
+        <div class="brand">
+            <img src="assets/img/profile-img4.jpg" alt="Rajat Sharma Logo">
+            Rajat Sharma
+        </div>
+        <nav class="navbar">
+            <ul class="nav">
+                <li class="active">
+                    <a href="#home" class="scroll-link">
+                        <i class="fa-solid fa-house"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#about" class="scroll-link">
+                        <i class="fa-solid fa-user"></i> About
+                    </a>
+                </li>
+                <li>
+                    <a href="#resume" class="scroll-link">
+                        <i class="fa-regular fa-file-lines"></i> Resume
+                    </a>
+                </li>
+                <li>
+                    <a href="#portfolio" class="scroll-link">
+                        <i class="fa-solid fa-briefcase"></i> Portfolio
+                    </a>
+                </li>
+                <li>
+                    <a href="#services" class="scroll-link">
+                        <i class="fa-solid fa-cogs"></i> Services
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact" class="scroll-link">
+                        <i class="fa-regular fa-envelope"></i> Contact
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
         <section class="home" id="home">
             <h1>Rajat Sharma</h1>
             <p>I'm <span class="typed"
@@ -272,157 +392,87 @@
                     download="Resume.pdf">here</a>
             </p>
         </section>
-        <section id="portfolio" class="portfolio">
-            <h3>Portfolio</h3>
-            <p>
-                Explore my portfolio to see a variety of projects I've worked
-                on, including web applications, mobile apps, and UI/UX designs.
-                Each project showcases my skills and creativity in bringing
-                digital ideas to life.
-            </p>
-            <div class="row">
-                <ul class="row-content">
-                    <li><a data-filter="all" class="on">All</a></li>
-                    <li><a data-filter="web">Web</a></li>
-                    <li><a data-filter="app">App</a></li>
-                    <li><a data-filter="uiux">UI/UX</a></li>
-                </ul>
+        <!-- ...existing code... -->
+<section id="portfolio" class="portfolio">
+    <h3>Portfolio</h3>
+    <p>
+        Explore my portfolio to see a variety of projects I've worked
+        on, including web applications, mobile apps, and UI/UX designs.
+        Each project showcases my skills and creativity in bringing
+        digital ideas to life.
+    </p>
+    <div class="portfolio-sets fancy-grid">
+        <div class="portfolioset web">
+            <a href="assets/img/my  proj/pnb.png" data-fancybox="gallery" data-caption="Web1">
+                <div class="portimg"><img src="assets/img/my  proj/pnb.png" alt="Web1"></div>
+            </a>
+            <div class="porttext">
+                <p>Web1</p>
+                <div class="portlink">
+                    <a href="https://punjabdisasterrelieffoundationpdrfhelpingfloodvictimsdonatenow.vercel.app/?fbclid=PAZXh0bgNhZW0CMTEAAaeMrHjtk0Wgb1NiyqxfMKefz5N1pw9LOzfn6spx3RcEQYUxWxGCXILYPuTx5w_aem_FJE7VR14BKUKK88MQ1I3gg#"
+                       target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
             </div>
-            <div class="portfolio-sets">
-                <div class="portfolioset web">
-                    <div class="portimg"><img
-                            src="assets/img/portfolio/portfolio-1.jpg"
-                            alt></div>
-                    <div class="porttext">
-                        <p>Web1</p>
-                        <div class="portlink"><i class="size"
-                                data-fancybox="gallery"
-                                data-src="assets/img/portfolio/portfolio-1.jpg"></i>
-                            <a href="https://insettprojects.rf.gd/projects.html"><i class="link"></i></a></div>
-                    </div>
+        </div>
+        <div class="portfolioset uiux">
+            <a href="assets/img/portfolio/portfolio-10.jpg" data-fancybox="gallery" data-caption="UI/UX3">
+                <div class="portimg"><img src="assets/img/portfolio/portfolio-10.jpg" alt="UI/UX3"></div>
+            </a>
+            <div class="porttext">
+                <p>UI/UX3</p>
+                <div class="portlink">
+                    <a href="https://insettprojects.rf.gd/projects.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
-
-                <div class="portfolioset uiux">
-                    <div class="portimg"><img
-                            src="assets/img/portfolio/portfolio-10.jpg"
-                            alt></div>
-                    <div class="porttext">
-                        <p>UI/UX3</p>
-                        <div class="portlink"><i class="size"
-                                data-fancybox="gallery"
-                                data-src="assets/img/portfolio/portfolio-10.jpg"></i>
-                                <a href="https://insettprojects.rf.gd/projects.html"><i class="link"></i></a></div>
-                    </div>
-                </div>
-
-                <div class="portfolioset web">
-                    <div class="portimg"><img
-                            src="assets/img/portfolio/portfolio-2.jpg"
-                            alt></div>
-                    <div class="porttext">
-                        <p>Web2</p>
-                        <div class="portlink"><i class="size"
-                                data-fancybox="gallery"
-                                data-src="assets/img/portfolio/portfolio-2.jpg"></i>
-                                <a href="https://insettprojects.rf.gd/projects.html"><i class="link"></i></a></div>
-                    </div>
-                </div>
-
-                <div class="portfolioset app">
-                    <div class="portimg"><img
-                            src="assets/img/portfolio/portfolio-7.jpg"
-                            alt></div>
-                    <div class="porttext">
-                        <p>App1</p>
-                        <div class="portlink"><i class="size"
-                                data-fancybox="gallery"
-                                data-src="assets/img/portfolio/portfolio-7.jpg"></i>
-                                <a href="https://insettprojects.rf.gd/projects.html"><i class="link"></i></a></div>
-                    </div>
-                </div>
-
-                <div class="portfolioset web">
-                    <div class="portimg"><img
-                            src="assets/img/portfolio/portfolio-3.jpg"
-                            alt></div>
-                    <div class="porttext">
-                        <p>Web2</p>
-                        <div class="portlink"><i class="size"
-                                data-fancybox="gallery"
-                                data-src="assets/img/portfolio/portfolio-3.jpg"></i>
-                                <a href="https://insettprojects.rf.gd/projects.html"><i class="link"></i></a></div>
-                    </div>
-                </div>
-
-                <div class="portfolioset app">
-                    <div class="portimg"><img
-                            src="assets/img/portfolio/portfolio-6.jpg"
-                            alt></div>
-                    <div class="porttext">
-                        <p>App1</p>
-                        <div class="portlink"><i class="size"
-                                data-fancybox="gallery"
-                                data-src="assets/img/portfolio/portfolio-6.jpg"></i>
-                                <a href="https://insettprojects.rf.gd/projects.html"><i class="link"></i></a></div>
-                    </div>
-                </div>
-
-                <div class="portfolioset web">
-                    <div class="portimg"><img
-                            src="assets/img/portfolio/portfolio-4.jpg"
-                            alt></div>
-                    <div class="porttext">
-                        <p>Web2</p>
-                        <div class="portlink"><i class="size"
-                                data-fancybox="gallery"
-                                data-src="assets/img/portfolio/portfolio-4.jpg"></i>
-                                <a href="https://insettprojects.rf.gd/projects.html"><i class="link"></i></a></div>
-                    </div>
-                </div>
-
-                <div class="portfolioset uiux">
-                    <div class="portimg"><img
-                            src="assets/img/portfolio/portfolio-9.jpg"
-                            alt></div>
-                    <div class="porttext">
-                        <p>UI/UX1</p>
-                        <div class="portlink"><i class="size"
-                                data-fancybox="gallery"
-                                data-src="assets/img/portfolio/portfolio-9.jpg"></i>
-                                <a href="https://insettprojects.rf.gd/projects.html"><i class="link"></i></a></div>
-                    </div>
-                </div>
-
-                <div class="portfolioset web">
-                    <div class="portimg"><img
-                            src="assets/img/portfolio/portfolio-5.jpg"
-                            alt></div>
-                    <div class="porttext">
-                        <p>Web2</p>
-                        <div class="portlink"><i class="size"
-                                data-fancybox="gallery"
-                                data-src="assets/img/portfolio/portfolio-5.jpg"></i>
-                                <a href="https://insettprojects.rf.gd/projects.html"><i class="link"></i></a></div>
-                    </div>
-                </div>
-
-                <div class="portfolioset uiux">
-                    <div class="portimg"><img
-                            src="assets/img/portfolio/portfolio-8.jpg"
-                            alt></div>
-                    <div class="porttext">
-                        <p>UI/UX1</p>
-                        <div class="portlink"><i class="size"
-                                data-fancybox="gallery"
-                                data-src="assets/img/portfolio/portfolio-8.jpg"></i>
-                                <a href="https://insettprojects.rf.gd/projects.html"><i class="link"></i></a></div>
-                    </div>
-                </div>
-
             </div>
-            <p class="projectslink">For more projects <a href="https://github.com/Rajat1-2">click
-                    here</a></p>
-        </section>
+        </div>
+        <div class="portfolioset web">
+            <a href="assets/img/my  proj/Screenshot 2025-10-01 162113.png" data-fancybox="gallery" data-caption="Web2">
+                <div class="portimg"><img src="assets/img/my  proj/Screenshot 2025-10-01 162113.png" alt="Web2"></div>
+            </a>
+            <div class="porttext">
+                <p>Web2</p>
+                <div class="portlink">
+                    <a href="https://csspractice-ten.vercel.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="portfolioset app">
+            <a href="assets/img/my  proj/Screenshot 2025-10-01 162353.png" data-fancybox="gallery" data-caption="NewsApp">
+                <div class="portimg"><img src="assets/img/my  proj/Screenshot 2025-10-01 162353.png" alt="NewsApp"></div>
+            </a>
+            <div class="porttext">
+                <p>NewsApp</p>
+                <div class="portlink">
+                    <a href="https://newsapp-three-alpha.vercel.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="portfolioset web">
+            <a href="assets/img/my  proj/Screenshot 2025-10-01 163846.png" data-fancybox="gallery" data-caption="Web2">
+                <div class="portimg"><img src="assets/img/my  proj/Screenshot 2025-10-01 163846.png" alt="Web2"></div>
+            </a>
+            <div class="porttext">
+                <p>Web2</p>
+                <div class="portlink">
+                    <a href="https://dev-courses-roan.vercel.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="portfolioset web">
+            <a href="assets/img/my  proj/Screenshot 2025-10-01 170436.png" data-fancybox="gallery" data-caption="Web2">
+                <div class="portimg"><img src="assets/img/my  proj/Screenshot 2025-10-01 170436.png" alt="Web2"></div>
+            </a>
+            <div class="porttext">
+                <p>Web2</p>
+                <div class="portlink">
+                    <a href="https://loginviaroute.vercel.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="projectslink">For more projects <a href="https://github.com/Rajat1-2">click here</a></p>
+</section>
+<!-- ...existing code... -->
         <section class="services" id="services">
             <h3>Services</h3>
             <p>What I can do for you</p>
