@@ -824,6 +824,262 @@ footer .sociallinks ul {
 
 /* ------------------------------------------------------------responsive website--------------------------------------------------------------------------------------------- */
 
+
+/* ...existing code... */
+
+/* IMPROVED RESPONSIVE STYLES FOR PHONE SCREENS */
+@media (max-width: 600px) {
+
+  html, body {
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 10px;
+    height: auto;
+    min-height: 56px;
+  }
+  .header .brand {
+    font-size: 1.1em;
+    margin: 8px 0;
+  }
+  .header .brand img {
+    width: 32px;
+    height: 32px;
+  }
+  .navbar {
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  .nav {
+    flex-direction: row;
+    gap: 4px;
+    width: 100%;
+    justify-content: center;
+    padding: 0;
+    background: none;
+  }
+  .nav li {
+    margin: 0 2px;
+    padding: 0;
+    border-radius: 12px;
+  }
+  .nav a {
+    font-size: 0.95em;
+    padding: 6px 8px;
+    border-radius: 12px;
+    gap: 4px;
+  }
+  .nav a i {
+    font-size: 1em;
+  }
+
+  section {
+    margin: 60px 0 0 0;
+    padding: 0 4px;
+  }
+
+  section h3 {
+    font-size: 2em;
+    margin: 10px 0;
+  }
+
+  /* Hero Section */
+  .home {
+    padding: 110px 8px 30px 8px;
+    height: auto;
+    width: 100vw;
+    min-height: 80vh;
+    background-position: center;
+  }
+  .home h1 {
+    font-size: 2em;
+    word-break: break-word;
+  }
+  .home p {
+    font-size: 1.1em;
+  }
+
+  /* About Section */
+  .about {
+    padding: 10px 4px;
+    height: auto;
+  }
+  .about-img {
+    width: 98vw;
+    margin: 0 auto 10px auto;
+    max-width: 320px;
+  }
+  .about .content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .about-text {
+    margin: 0;
+    text-align: left;
+  }
+  .agecity {
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Skills Section */
+  .skills {
+    padding: 10px 0;
+  }
+  .skills p {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+  }
+  .skillset {
+    flex-direction: column;
+    margin: 0;
+  }
+  .skill1, .skill2 {
+    margin: 0;
+    width: 100%;
+  }
+
+  /* Resume Section */
+  .sets {
+    flex-direction: column;
+    margin: 0;
+  }
+  .set1, .set2 {
+    width: 100%;
+    margin: 0;
+  }
+  .sets h2 {
+    margin-left: 0;
+    font-size: 1.2em;
+  }
+
+  /* Portfolio Section */
+  .portfolio {
+    padding: 10px 2px 0 2px;
+  }
+  .portfolio p {
+    margin: 0;
+    font-size: 1em;
+  }
+  .fancy-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .portfolioset {
+    width: 98vw;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .portimg img {
+    height: 140px;
+  }
+  .porttext p {
+    font-size: 1.1em;
+  }
+  .projectslink {
+    margin: 20px 0 0 0 !important;
+    font-size: 1.1em !important;
+    text-align: center;
+    display: block;
+  }
+
+  /* Services Section */
+  .services p {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+  }
+  .service-container {
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
+  .service {
+    width: 98vw;
+    max-width: 340px;
+    margin: 10px auto;
+    padding: 10px;
+  }
+  .service-img {
+    width: 98vw;
+    max-width: 320px;
+    height: auto;
+    margin: 10px auto;
+  }
+  .service-img img {
+    width: 100%;
+    height: auto;
+  }
+  .service h2 {
+    font-size: 1.2em;
+  }
+  .service p {
+    font-size: 1em;
+    margin: 10px 0;
+  }
+
+  /* Contact Section */
+  .contact-content {
+    padding: 0;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .contact-left {
+    width: 100%;
+    margin: 0;
+  }
+  .contact-things {
+    width: 100%;
+    margin: 10px 0;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .contact-content form {
+    margin: 10px 0;
+    width: 100%;
+  }
+  .formtext {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .formtext input,
+  .contact-content form input,
+  .contact-content form textarea {
+    width: 98%;
+    font-size: 1em;
+  }
+  .contact-content form button {
+    margin: 10px auto;
+    width: 90%;
+    font-size: 1.1em;
+    padding: 8px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 20px 0;
+  }
+  footer p {
+    margin: 0;
+    font-size: 1em;
+  }
+  footer h1 {
+    font-size: 1.2em;
+  }
+}
+
+/* ...existing code... */
+
+
 @media (max-width: 1195px) {
   .projectslink {
     margin: 35px 0 0 635px !important;
