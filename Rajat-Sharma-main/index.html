@@ -11,6 +11,8 @@
          
 
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+     <!-- EmailJS SDK -->
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         .header {
             position: fixed;
@@ -35,75 +37,437 @@
             color: #222;
             letter-spacing: 1px;
         }
+        /* Modern Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 136, 0, 0.1);
+            padding: 12px 2%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            height: 60px;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Brand Styling */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        
+        .brand:hover {
+            background: rgba(255, 136, 0, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 136, 0, 0.2);
+        }
+        
+        .brand-image-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
         .header .brand img {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #ff8800;
+            border: 3px solid #ff8800;
             background: #fff;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(255, 136, 0, 0.3);
         }
+        
+        .brand:hover .header .brand img,
+        .header .brand img:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 30px rgba(255, 136, 0, 0.5);
+            border-color: #ff6b00;
+        }
+        
+        .online-indicator {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 14px;
+            height: 14px;
+            background: #4CAF50;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+            animation: pulse-green 2s infinite;
+        }
+        
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+        }
+        
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .brand-text {
+            background: linear-gradient(135deg, #ff8800, #ff6b00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            font-size: 1.4rem;
+            line-height: 1.2;
+            transition: all 0.3s ease;
+        }
+        
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .brand:hover .brand-subtitle {
+            color: #ff8800;
+            opacity: 1;
+        }
+        
+        /* Add a subtle glow effect */
+        .brand::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgba(255, 136, 0, 0.1), rgba(255, 107, 0, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .brand:hover::before {
+            opacity: 1;
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .menu-toggle:hover {
+            background: rgba(255, 136, 0, 0.1);
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #ff8800;
+            margin: 3px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* Navigation Styles */
         .navbar {
             flex: 1;
             display: flex;
             justify-content: flex-end;
         }
+        
         .nav {
             display: flex;
             flex-direction: row;
             align-items: center;
-            gap: 18px;
+            gap: 8px;
             list-style: none;
             margin: 0;
             padding: 0;
         }
-        .nav li {
+        
+        .nav-item {
+            position: relative;
             display: flex;
             align-items: center;
         }
-        .nav a {
+        
+        .nav-link {
+            position: relative;
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            border-radius: 24px;
-            font-size: 1rem;
-            color: #333;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            color: #555;
             text-decoration: none;
-            transition: background 0.2s, color 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-weight: 500;
+            overflow: hidden;
         }
-        .nav li.active a,
-        .nav a:hover {
-            background: #ff8800;
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff8800, #ff6b00);
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+            border-radius: 25px;
+        }
+        
+        .nav-link:hover::before,
+        .nav-item.active .nav-link::before {
+            left: 0;
+        }
+        
+        .nav-link:hover,
+        .nav-item.active .nav-link {
             color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 136, 0, 0.4);
         }
-        .nav a .fa-solid,
-        .nav a .fa-regular {
-            font-size: 1.2em;
+        
+        .nav-link i {
+            font-size: 1.1em;
+            transition: all 0.3s ease;
         }
-        .menu {
-            display: none;
+        
+        .nav-link:hover i {
+            transform: scale(1.2);
         }
+        
+        .nav-text {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Navigation Indicator */
+        .nav-indicator {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 3px;
+            background: linear-gradient(135deg, #ff8800, #ff6b00);
+            border-radius: 2px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-item.active .nav-indicator {
+            transform: translateX(-50%) scaleX(1);
+        }
+        
+        /* Body Padding */
         body {
-            padding-top: 64px;
+            padding-top: 70px;
+            transition: padding-top 0.3s ease;
         }
+        /* Responsive Mobile Styles */
         @media (max-width: 768px) {
             .header {
-                flex-direction: column;
-                height: auto;
-                padding: 10px 10px;
+                padding: 10px 15px;
+                height: 60px;
             }
+            
+            .brand {
+                font-size: 1.2rem;
+                gap: 10px;
+                padding: 6px 10px;
+            }
+            
+            .header .brand img {
+                width: 40px;
+                height: 40px;
+                border-width: 2px;
+            }
+            
+            .brand-text {
+                font-size: 1.2rem;
+            }
+            
+            .brand-subtitle {
+                font-size: 0.65rem;
+            }
+            
+            .online-indicator {
+                width: 12px;
+                height: 12px;
+                bottom: 1px;
+                right: 1px;
+            }
+            
+            .menu-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+            
             .navbar {
+                position: fixed;
+                top: 60px;
+                left: 0;
                 width: 100%;
-                justify-content: center;
+                height: calc(100vh - 60px);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                transform: translateX(-100%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1000;
+                border-top: 1px solid rgba(255, 136, 0, 0.2);
             }
+            
+            .navbar.show {
+                transform: translateX(0);
+            }
+            
             .nav {
                 flex-direction: column;
-                gap: 10px;
+                align-items: stretch;
+                gap: 0;
+                padding: 30px 20px;
+                height: 100%;
+                overflow-y: auto;
             }
-            .header .brand {
+            
+            .nav-item {
+                width: 100%;
                 margin-bottom: 8px;
+            }
+            
+            .nav-link {
+                justify-content: flex-start;
+                padding: 18px 25px;
+                border-radius: 15px;
+                font-size: 1.1rem;
+                background: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(255, 136, 0, 0.1);
+                margin-bottom: 8px;
+            }
+            
+            .nav-link::before {
+                border-radius: 15px;
+            }
+            
+            .nav-link i {
+                font-size: 1.3em;
+                min-width: 25px;
+            }
+            
+            .nav-text {
+                font-size: 1.1rem;
+                margin-left: 5px;
+            }
+            
+            .nav-indicator {
+                display: none;
+            }
+            
+            body {
+                padding-top: 60px;
+            }
+            
+            /* Mobile menu overlay */
+            .navbar::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: -1;
+            }
+            
+            .navbar.show::before {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 8px 12px;
+            }
+            
+            .brand {
+                font-size: 1.1rem;
+            }
+            
+            .nav {
+                padding: 20px 15px;
+            }
+            
+            .nav-link {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Scroll Effects */
+        @media (min-width: 769px) {
+            .header.scrolled .brand img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .header.scrolled .nav-link {
+                padding: 10px 18px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -112,39 +476,65 @@
     <body>
           <header class="header">
         <div class="brand">
-            <img src="assets/img/profile-img4.jpg" alt="Rajat Sharma Logo">
-            Rajat Sharma
+            <div class="brand-image-container">
+                <img src="assets/img/profile-img4.jpg" alt="Rajat Sharma Logo">
+                <div class="online-indicator"></div>
+            </div>
+            <div class="brand-info">
+                <span class="brand-text">Rajat Sharma</span>
+                <span class="brand-subtitle">Web Developer</span>
+            </div>
         </div>
+        
+        <!-- Mobile menu toggle -->
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
         <nav class="navbar">
             <ul class="nav">
-                <li class="active">
-                    <a href="#home" class="scroll-link">
-                        <i class="fa-solid fa-house"></i> Home
+                <li class="nav-item active">
+                    <a href="#home" class="nav-link scroll-link">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-text">Home</span>
+                        <div class="nav-indicator"></div>
                     </a>
                 </li>
-                <li>
-                    <a href="#about" class="scroll-link">
-                        <i class="fa-solid fa-user"></i> About
+                <li class="nav-item">
+                    <a href="#about" class="nav-link scroll-link">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-text">About</span>
+                        <div class="nav-indicator"></div>
                     </a>
                 </li>
-                <li>
-                    <a href="#resume" class="scroll-link">
-                        <i class="fa-regular fa-file-lines"></i> Resume
+                <li class="nav-item">
+                    <a href="#resume" class="nav-link scroll-link">
+                        <i class="fas fa-file-alt"></i>
+                        <span class="nav-text">Resume</span>
+                        <div class="nav-indicator"></div>
                     </a>
                 </li>
-                <li>
-                    <a href="#portfolio" class="scroll-link">
-                        <i class="fa-solid fa-briefcase"></i> Portfolio
+                <li class="nav-item">
+                    <a href="#portfolio" class="nav-link scroll-link">
+                        <i class="fas fa-briefcase"></i>
+                        <span class="nav-text">Portfolio</span>
+                        <div class="nav-indicator"></div>
                     </a>
                 </li>
-                <li>
-                    <a href="#services" class="scroll-link">
-                        <i class="fa-solid fa-cogs"></i> Services
+                <li class="nav-item">
+                    <a href="#services" class="nav-link scroll-link">
+                        <i class="fas fa-cogs"></i>
+                        <span class="nav-text">Services</span>
+                        <div class="nav-indicator"></div>
                     </a>
                 </li>
-                <li>
-                    <a href="#contact" class="scroll-link">
-                        <i class="fa-regular fa-envelope"></i> Contact
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link scroll-link">
+                        <i class="fas fa-envelope"></i>
+                        <span class="nav-text">Contact</span>
+                        <div class="nav-indicator"></div>
                     </a>
                 </li>
             </ul>
@@ -228,10 +618,10 @@
                         </div>
                     </div>
                     <div class="skill">
-                        <p>PHP</p>
+                        <p>Node.js</p>
                         <div class="progress-bar">
                             <div class="progress"
-                                style="--target-width: 30%;">30%</div>
+                                style="--target-width: 35%;">35%</div>
                         </div>
                     </div>
                     <div class="skill">
@@ -540,8 +930,7 @@
 
                     </div>
                 </div>
-                <form action="assets/php/sendmail.php" method="post"
-                    id="contactForm">
+                <form id="contactForm">
                     <div class="formtext">
                         <input type="text" id="name" name="name"
                             placeholder="Your Name" required />
@@ -550,9 +939,12 @@
                     </div>
                     <input type="text" name="subject" id="subject"
                         placeholder="Subject" required />
-                    <textarea name="message" id="textarea"
+                    <textarea name="message" id="message"
                         placeholder="Message" rows="3" required></textarea>
-                    <button type="submit" name="submitbtn">Submit</button>
+                    <button type="submit" id="submitBtn">
+                        <span id="submitText">Submit</span>
+                        <span id="loadingText" style="display: none;">Sending...</span>
+                    </button>
                     
                 </form>
             </div>
@@ -575,7 +967,6 @@
             <p>© Copyright RajatSharma. All Rights Reserved</p>
         </footer>
         <script src="assets/vender/js/sweetalert2@11.js"></script>
-        <script src="assets/php/sweetform.js"></script>
         <script src="assets/vender/portfolio-img/fancybox.umd.js"></script>
         <script src="assets/vender/js/imagesloaded.pkgd.min.js"></script>
         <script src="assets/vender/js/masonry.pkgd.min.js"></script>
