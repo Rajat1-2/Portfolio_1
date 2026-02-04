@@ -442,7 +442,40 @@ section h3 {
 }
 
 .downresume {
-  margin: 0 0 0 1245px;
+  margin: 30px auto 0 auto;
+  text-align: center;
+}
+
+.downresume img {
+  max-width: 260px;
+  width: 80%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.downresume img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Download button shown under resume inside Fancybox caption */
+.resume-download-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 18px;
+  background: #f57c00;
+  color: #3E2723;
+  border-radius: 999px;
+  border: 2px solid #3E2723;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.resume-download-btn:hover {
+  background: #ff9800;
 }
 
 /* ---------------------------------------------Portfolio----------------------------------------------------------------------------- */
@@ -540,14 +573,18 @@ section h3 {
   margin: 0 auto;
 }
 
+/* Portfolio card: small preview box that expands on hover */
 .portfolioset {
   margin: 10px;
   position: relative;
-  width: 400px;
-  height: auto;
+  width: 360px;
+  max-width: 100%;
+  max-height: 220px;
+  overflow: hidden;
+  border-radius: 12px;
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.6s ease, transform 0.6s ease, height 0.6s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.4s ease;
 }
 
 .portfolioset.hidden {
@@ -561,16 +598,18 @@ section h3 {
 
 .portimg {
   width: 100%;
-  height: auto;
+  height: 100%;
   cursor: pointer;
 }
 
 .portimg img {
-  border-radius: 7px;
+  border-radius: 12px;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 0.4s ease;
 }
 
 .porttext {
@@ -626,6 +665,14 @@ section h3 {
 
 .porttext .link:hover {
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" style="fill: rgba(245, 124, 0, 1);transform: ;msFilter:;"><path d="M8.465 11.293c1.133-1.133 3.109-1.133 4.242 0l.707.707 1.414-1.414-.707-.707c-.943-.944-2.199-1.465-3.535-1.465s-2.592.521-3.535 1.465L4.929 12a5.008 5.008 0 0 0 0 7.071 4.983 4.983 0 0 0 3.535 1.462A4.982 4.982 0 0 0 12 19.071l.707-.707-1.414-1.414-.707.707a3.007 3.007 0 0 1-4.243 0 3.005 3.005 0 0 1 0-4.243l2.122-2.121z"></path><path d="m12 4.929-.707.707 1.414 1.414.707-.707a3.007 3.007 0 0 1 4.243 0 3.005 3.005 0 0 1 0 4.243l-2.122 2.121c-1.133 1.133-3.109 1.133-4.242 0L10.586 12l-1.414 1.414.707.707c.943.944 2.199 1.465 3.535 1.465s2.592-.521 3.535-1.465L19.071 12a5.008 5.008 0 0 0 0-7.071 5.006 5.006 0 0 0-7.071 0z"></path></svg>') no-repeat center;
+}
+
+.portfolioset:hover {
+  max-height: 329px;
+}
+
+.portfolioset:hover .portimg img {
+  transform: scale(1);
 }
 
 .portfolioset:hover .porttext {
@@ -842,16 +889,25 @@ footer .sociallinks ul {
     overflow-x: hidden;
   }
 
+  /* Keep header as a horizontal bar with
+     brand on the left and menu on the right */
   .header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0 10px;
-    height: auto;
-    min-height: 56px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    height: 60px;
   }
+
   .header .brand {
     font-size: 1.1em;
-    margin: 8px 0;
+    margin: 0;
+  }
+
+  /* Ensure the hamburger sits on the right */
+  .menu-toggle {
+    display: flex !important;
+    margin-left: auto;
   }
   .header .brand img {
     width: 32px;
@@ -888,11 +944,11 @@ footer .sociallinks ul {
 
   section {
     margin: 60px 0 0 0;
-    padding: 0 4px;
+    padding: 0 12px;
   }
 
   section h3 {
-    font-size: 2em;
+    font-size: 1.8em;
     margin: 10px 0;
   }
 
@@ -914,8 +970,12 @@ footer .sociallinks ul {
 
   /* About Section */
   .about {
-    padding: 10px 4px;
+    padding: 10px 0;
     height: auto;
+  }
+  .about p {
+    font-size: 1.05em;
+    line-height: 1.5;
   }
   .about-img {
     width: 98vw;
@@ -936,12 +996,18 @@ footer .sociallinks ul {
     text-align: left;
   }
 
+  /* Extra left padding for the about details list on mobile */
+  .text ul {
+    padding-left: 16px;
+    font-size: 1.15em;
+  }
+
   /* Skills Section */
   .skills {
-    padding: 10px 0;
+    padding: 10px 12px 20px 24px;
   }
   .skills p {
-    margin: 0 0 10px 0;
+    margin: 0 12px 10px 12px;
     font-size: 1.1em;
   }
   .skillset {
@@ -949,7 +1015,7 @@ footer .sociallinks ul {
     margin: 0;
   }
   .skill1, .skill2 {
-    margin: 0;
+    margin: 0 0 0 4px;
     width: 100%;
   }
 
@@ -966,30 +1032,52 @@ footer .sociallinks ul {
     margin-left: 0;
     font-size: 1.2em;
   }
+  .sets p {
+    font-size: 0.95em;
+  }
+
+  /* Smaller headings and list text for resume skills on mobile */
+  .resumeskills h4,
+  .course h4 {
+    font-size: 1.1em;
+  }
+  .resumeskills ul {
+    font-size: 1.05em;
+  }
+
+  /* Education entries - slightly smaller on mobile */
+  .edu h4 {
+    font-size: 1.1em;
+  }
+  .edu p {
+    font-size: 0.95em;
+  }
+  .edu i {
+    font-size: 0.95em;
+  }
 
   /* Portfolio Section */
   .portfolio {
-    padding: 10px 2px 0 2px;
+    padding: 10px 12px 20px 12px;
+    text-align: left;
   }
   .portfolio p {
-    margin: 0;
-    font-size: 1em;
+    margin: 4px 2px 10px 2px;
+    font-size: 0.98em;
+  }
+  /* Stack projects tightly on mobile, without large vertical gaps */
+  .portfolio-sets {
+    display: block;
   }
   .fancy-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-top: 16px;
+    display: block;
+    margin-top: 8px;
   }
-  .portfolioset {
-    width: 98vw;
-    max-width: 340px;
-    margin: 0 auto;
-  }
-  .portimg img {
-    height: 140px;
-  }
-  .porttext p {
-    font-size: 1.1em;
+  .portfolio-sets .portfolioset {
+    position: static !important;
+    width: 100%;
+    max-width: 360px;
+    margin: 18px auto;
   }
   .projectslink {
     margin: 20px 0 0 0 !important;
@@ -1001,7 +1089,7 @@ footer .sociallinks ul {
   /* Services Section */
   .services p {
     margin: 0 0 10px 0;
-    font-size: 1.1em;
+    font-size: 1em;
   }
   .service-container {
     flex-direction: column;
@@ -1034,7 +1122,7 @@ footer .sociallinks ul {
 
   /* Contact Section */
   .contact-content {
-    padding: 0;
+    padding: 0 12px 20px 12px;
     flex-direction: column;
     gap: 10px;
   }
@@ -1044,13 +1132,20 @@ footer .sociallinks ul {
   }
   .contact-things {
     width: 100%;
-    margin: 10px 0;
-    flex-direction: column;
-    gap: 4px;
+    margin: 6px 0;
+    padding: 8px 10px;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
   }
   .contact-content form {
-    margin: 10px 0;
+    margin: 4px 0 0 0;
     width: 100%;
+    padding: 6px 8px 12px 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.8);
   }
   .formtext {
     flex-direction: column;
@@ -1059,11 +1154,11 @@ footer .sociallinks ul {
   .formtext input,
   .contact-content form input,
   .contact-content form textarea {
-    width: 98%;
+    width: 100%;
     font-size: 1em;
   }
   .contact-content form button {
-    margin: 10px auto;
+    margin: 10px auto 0 auto;
     width: 90%;
     font-size: 1.1em;
     padding: 8px;
@@ -1095,208 +1190,15 @@ footer .sociallinks ul {
   }
 
   .downresume {
-    margin: 0 0 0 912px;
+    margin: 30px auto 0 auto;
   }
 }
 
 @media (max-width: 720px) {
-
-  .navbar {
-    margin: 40px 0px;
-    left: -265px;
-    transition: left 0.5s ease;
-  }
-
-  .navbar.show {
-    left: 0;
-  }
-
-  .nav {
-    background: #f57c00;
-    width: 255px;
-    padding: 25px;
-    z-index: 100;
-  }
-
-  .nav li {
-    background: none;
-    margin: 30px 35px;
-  }
-
-  .nav li i {
-    display: none;
-  }
-
-  .nav li a {
-    opacity: 1;
-  }
-
-  .nav li:hover a {
-    transform: translateX(0px);
-  }
-
-  .menu {
-    display: inline-block;
-    position: fixed;
-    display: inline-block;
-    width: 41px;
-    height: 41px;
-    margin: 5px 0 0 315px;
-    cursor: pointer;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: rgba(66, 66, 66, 1);transform: ;msFilter:;"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg>') no-repeat center;
-  }
-
-  /* --------------home--------------- */
-
-  .home {
-    padding: 250px 50px;
-  }
-
-  .home h1 {
-    font-size: 2.6em;
-  }
-
-  /* ------------about----------- */
-
-  .about {
-    padding: 10px 15px;
-    height: auto;
-  }
-
-  .about .content {
-    flex-direction: column;
-  }
-
-  .about-img {
-    width: 340px;
-    margin: 0;
-  }
-
-  .agecity {
-    flex-direction: column;
-    width: 100%;
-    text-align: left;
-  }
-
-  /* ----skills--------------- */
-
-  .skills p {
-    margin: 0;
-  }
-
-  .skillset {
-    margin: 30px 0;
-    flex-direction: column;
-  }
-
-  .skill1,
-  .skill2 {
-    width: 100%;
-    margin: 0 0 0 10px;
-  }
-
-  /* ---------resume-------------------------------------- */
-
-  .sets {
-    flex-direction: column;
-    margin: 10px 0px;
-  }
-
-  .set1,
-  .set2 {
-    width: 90%;
-    margin: 0 40px;
-  }
-
-  .sets h2 {
-    margin-left: 68px;
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-
-  .resumeskills h4,
-  .course h4 {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  .course h2 {
-    margin-left: 0;
-  }
-
-  /* --------portfolio-------------- */
-
-  .portfolio {
-    padding: 10px 10px;
-  }
-
-  .portfolio p {
-    margin: 0;
-  }
-
-  .portfolioset {
-    width: 340px;
-  }
-
-  /* --------------services------------------ */
-
-  .services p {
-    margin: 0;
-  }
-
-  .service-container {
-    flex-wrap: unset;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .service {
-    width: 100%;
-    margin: 10px 0px;
-  }
-
-  .service-img {
-    width: 280px;
-    height: auto;
-  }
-
-  /* ---------------contact--------------------- */
-
-  .contact-content {
-    padding: 0;
-    flex-direction: column;
-  }
-
-  .contact-left {
-    width: 100%;
-  }
-
-  .contact-things {
-    width: 100%;
-  }
-
-  .contact-content form {
-    margin: 10px;
-  }
-
-  .formtext {
-    flex-direction: column;
-  }
-
-  .formtext input {
-    width: 92%;
-  }
-
-  .contact-content form input,
-  .contact-content form textarea {
-    width: 92%;
-  }
-
-  .contact-content form button {
-    margin: 0 110px;
-  }
-
-  /* ---------------footer----------- */
+  /* Legacy mobile layout removed.
+     Modern navbar + section-specific mobile styles
+     from other media queries now handle this range. */
+}
 
 /* ============= MODERN NAVBAR STYLES ============= */
 
@@ -1516,31 +1418,46 @@ body {
         z-index: 1001 !important;
     }
     
+    /* Full-screen transparent overlay with centered menu card */
     .navbar {
-        position: fixed !important;
-        top: 60px !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: calc(100vh - 60px) !important;
-        background: rgba(255, 255, 255, 0.98) !important;
-        backdrop-filter: blur(20px) !important;
-        transform: translateX(-100%) !important;
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        z-index: 1000 !important;
-        border-top: 1px solid rgba(255, 136, 0, 0.2) !important;
+      position: fixed !important;
+      top: 60px !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100% !important;
+      max-height: none !important;
+      background: rgba(0, 0, 0, 0.45) !important;
+      backdrop-filter: blur(2px) !important;
+      transform: translateY(-10px) scaleY(0) !important;
+      transform-origin: top center !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: transform 0.25s ease, opacity 0.25s ease !important;
+      z-index: 1000 !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: flex-start !important;
     }
     
     .navbar.show {
-        transform: translateX(0) !important;
+      transform: translateY(0) scaleY(1) !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
     }
     
     .nav {
         flex-direction: column !important;
         align-items: stretch !important;
-        gap: 0 !important;
-        padding: 30px 20px !important;
-        height: 100% !important;
+        gap: 6px !important;
+        padding: 14px 14px 16px 14px !important;
+        max-height: 70vh !important;
         overflow-y: auto !important;
+        background: rgba(255, 255, 255, 0.96) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25) !important;
+        width: min(360px, 92vw) !important;
+        margin-top: 10px !important;
     }
     
     .nav-item {
@@ -1550,9 +1467,9 @@ body {
     
     .nav-link {
         justify-content: flex-start !important;
-        padding: 18px 25px !important;
-        border-radius: 15px !important;
-        font-size: 1.1rem !important;
+        padding: 12px 16px !important;
+        border-radius: 12px !important;
+        font-size: 1rem !important;
         background: rgba(255, 255, 255, 0.8) !important;
         border: 1px solid rgba(255, 136, 0, 0.1) !important;
         margin-bottom: 8px !important;
@@ -1618,4 +1535,3 @@ body {
     margin: 0;
   }
 
-}
